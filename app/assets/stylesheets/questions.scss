@@ -1,19 +1,52 @@
+@import "font-awesome";
+
 body{
     width: 960px;
     margin: auto;
 }
+
+//question & answer cards
 .card{
+    width: auto;
+    height: auto;
     margin: 30px;
+    padding: 20px;
+}
+.card-body{
+    padding: 10px;
+    &.answer{
+        margin: 20px;
+    }
 }
 .card-subtitle{
+    margin: 5px;
     text-align: left;
-    margin: 20px;
 }
 .card-text{
     font-size: 18px;
+    margin-top: 20px;
 }
-.new-form{
+
+//answers
+.answers-count{
+    margin: 20px 20px 20px 20px;
+}
+.answer-menu{
+    float: right;
+}
+
+//form
+.question-form{
     margin: 50px 100px 50px 0px;
+    .question-user{
+        margin-top: 20px;
+    }
+    .question-content{
+        margin-top: 20px;
+    }
+    .question-submit{
+        margin-top: 20px;
+    }    
 }
 .answer-form{
     margin: 100px;
@@ -26,10 +59,17 @@ body{
         height: 200px;
     }
 }
-.form-submit{
-    margin-top: 20px;
-}
+
+//some buttons
 .back-button{
     margin: 50px 100px 100px 0px;
+}
+.go-to-form{
+    text-align: center;
+    #answer{
+        float: none;
+        width: 500px;
+        height: 50px;
+    }    
 }
 

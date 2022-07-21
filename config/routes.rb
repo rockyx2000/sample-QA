@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   root "questions#index"
   resources :questions do
     resources :answers
+
+  get "/answer/form/:question_id" => "answers#answers_form", as: :get_form 
   end
 end

@@ -11,11 +11,16 @@
 </div>
 <div class="posts">
     <% @question.each do |q| %>
-    <div class="posts-title">
-        <%= link_to q.title, question_path(q) %>
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">
+                <%= link_to q.title, question_path(q) %>
+            </div>
+            <div class="card-subtitle">
+                <i class="fa-regular fa-comment"></i><%= Answer.where(question_id: q.id).count %>
+            </div>
+        </div>
     </div>
-    <%= q.name %>
-    <%= q.content %>
     <% end %>
 </div>
 <%# link_to "edit", edit_question_path(q) %>

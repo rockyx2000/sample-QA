@@ -2,8 +2,12 @@ class AnswersController < ApplicationController
 
     def create
       @question = Question.find_by(id: params[:question_id])
-      @question.answers.create(answer_params)
-      redirect_to question_path(@question)
+      @answer = Answer.find_by(question_id: params[:question_id])
+      if @question.answers.create(answer_params)
+        redirect_to question_path(@question)
+      else
+        render "show", status: :unprocessable_entity
+      end
     end
 
     def destroy
@@ -15,6 +19,20 @@ class AnswersController < ApplicationController
 
     def show
       @answer = Answer.find_by(question: params[:question_id])
+    end
+
+    def answer_form
+      @question = Question.find_by(id: params[:question_id])
+      render(
+        turbo_stream: turbo_stream.update(
+          "answer-form",
+          partial: "answers/form",
+          locals: {
+            model: @question
+          }
+
+        )
+      )
     end
 
     private

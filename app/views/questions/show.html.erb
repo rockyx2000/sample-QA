@@ -1,4 +1,4 @@
-<div class="card" style="width: 60rem; height: 20rem;">
+<div class="card">
   <div class="card-body">
     <p class="card-subtitle">
       <%= @question.name %>
@@ -9,24 +9,43 @@
   </div>
 </div>
 
-<div class="card" style="width: 60rem; height: 20rem;">
-  <div class="card-body">
+<div class="go-to-form">
+  <button id="answer" class="btn btn-primary" type="submit">回答する</button>
+</div>
+
+<% if @question.answers.length > 0 %>
+  <div class="card">
+    <h3 class="answers-count">
+      回答(<%= @question.answers.count %>件)
+    </h3>
     <% @question.answers.each do |answer| %>
-      <p class="card-subtitle">
-        <%= answer.name %>
-      </p>
-      <p class="card-text">
-        <%= answer.content %>
-      </p>
-      <%= link_to [answer.question, answer], data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } do%>
-        <button type="button" class="btn btn-outline-danger">削除</button>
-      <% end %>
+        <div class="card-body answer">
+          <p class="card-subtitle">
+            <%= answer.name %>
+          </p>
+          <p class="card-text">
+            <%= answer.content %>
+          </p>
+          <div class="answer-menu">
+            <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa-solid fa-gear"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <%= link_to "回答を削除", [answer.question, answer], data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか?" }, class: "dropdown-item" %>
+              <li><a class="dropdown-item" href="#">Menu item</a></li>
+              <li><a class="dropdown-item" href="#">Menu item</a></li>
+            </ul>
+          </div>
+        </div>
     <% end %>
   </div>
-</div>
-<div class="answer-form">
+<% end %>
+
+<div class="answer-form" id="create-answer">
   <h2>回答を追加する</h2>
   <%= form_with model: [@question, @question.answers.build] do |form| %>
+      <div class="answer-errors">
+      </div>
       <div class="form-title">
         <%= form.label "ユーザー名", class: "form-label" %><br>
         <%= form.text_field :name, class: "form-control" %>
@@ -46,3 +65,14 @@
     <button type="button" class="btn btn-outline-primary">戻る</button>
   <% end%>
 <div>
+
+<script type="text/javascript">
+  document.addEventListener("turbo:load", () => {
+    Turbo.clearCache();
+    //初期表示は非表示
+    const button = document.getElementById("answer")
+    button.addEventListener("click", function(){
+      window.scrollTo(0, document.body.scrollHeight)
+    });
+  })
+</script>
