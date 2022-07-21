@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController
     def index
         @question = Question.all
+        #@answers = Answer.where(question_id: @question.id).pluck(:id)
     end
 
     def show

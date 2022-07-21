@@ -15,7 +15,7 @@
 
 <% if @question.answers.length > 0 %>
   <div class="card">
-    <h3 class="answers-count">
+    <h4 class="answers-count">
       回答(<%= @question.answers.count %>件)
     </h3>
     <% @question.answers.each do |answer| %>
@@ -46,15 +46,15 @@
   <%= form_with model: [@question, @question.answers.build] do |form| %>
       <div class="answer-errors">
       </div>
-      <div class="form-title">
+      <div class="answer-title">
         <%= form.label "ユーザー名", class: "form-label" %><br>
         <%= form.text_field :name, class: "form-control" %>
       </div>
-      <div class="form-content">
+      <div class="answer-content">
         <%= form.label "回答", class: "form-label" %><br>
         <%= form.text_area :content, class: "form-control content" %>
       </div>
-      <div class="form-submit">
+      <div class="answer-submit">
         <%= form.submit "回答を追加", class: "btn btn-outline-success" %>
       </div>
 

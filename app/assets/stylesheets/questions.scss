@@ -50,6 +50,15 @@ body{
 }
 .answer-form{
     margin: 100px;
+    .answer-title{
+        margin-top: 20px;
+    }
+    .answer-content{
+        margin-top: 20px;
+    }
+    .answer-submit{
+        margin-top: 20px;
+    }
 }
 .form-control{
     resize: none;
