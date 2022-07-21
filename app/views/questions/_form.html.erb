@@ -1,28 +1,34 @@
-<%= form_with model: @question do |form| %>
-  <% if @question.errors.any? %>
-    <div>
-      <ul>
-        <% @question.errors.full_messages.each do |error| %>
-          <li><%= error %></li>
-        <% end %>
-      </ul>
+<div class="new-form">
+  <%= form_with model: @question do |form| %>
+    <% if @question.errors.any? %>
+      <div>
+        <ul>
+          <% @question.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-title">
+      <%= form.label "タイトル", class: "form-label" %><br>
+      <%= form.text_field :title, class: "form-control" %>
     </div>
-  <% end %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
-  </div>
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :content %><br>
-    <%= form.text_area :content %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
+    <div class="form-user">
+      <%= form.label "ユーザー名", class: "form-label" %><br>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+    <div class="form-content">
+      <%= form.label "内容", class: "form-label" %><br>
+      <%= form.text_area :content, class: "form-control" %>
+    </div>
+    <div class="form-submit">
+      <%= form.submit "投稿", class: "btn btn-outline-success" %>
+    </div>
 
-<% end %>
-<%= link_to "Back", root_path %>
+  <% end %>
+</div>
+<div class="back-button">
+  <%= link_to root_path do %>
+    <button type="button" class="btn btn-outline-primary">戻る</button>
+  <% end%>
+<div>

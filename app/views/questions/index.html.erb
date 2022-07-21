@@ -1,22 +1,23 @@
-<h1>Questions</h1>
-<%= link_to "New Question", new_question_path %>
-<table>
-    <tr>
-    <th>ID</th>
-    <th>Titile</th>
-    <th>Name</th>
-    <th>Content</th>
-    <th></th>
-    </tr>
+<h1>みんなの質問</h1>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    メニュー
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><%= link_to "新規投稿", new_question_path, class: "dropdown-item" %></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+<div class="posts">
     <% @question.each do |q| %>
-    <tr>
-        <td><%= q.id %></td>
-        <td><%= q.title %></td>
-        <td><%= q.name %></td>
-        <td><%= q.content %></td>
-        <td><%= link_to "show", question_path(q) %></td>
-        <td><%= link_to "edit", edit_question_path(q) %></td>
-        <td><%= link_to "delete", question_path(q), data:{ turbo_method: "delete", turbo_confirm: "Are you sure?" } %></td>
-    </tr>
+    <div class="posts-title">
+        <%= link_to q.title, question_path(q) %>
+    </div>
+    <%= q.name %>
+    <%= q.content %>
     <% end %>
-</table>
+</div>
+<%# link_to "edit", edit_question_path(q) %>
+<%# link_to "delete", question_path(q), data:{ turbo_method: "delete", turbo_confirm: "Are you sure?" } %>
+

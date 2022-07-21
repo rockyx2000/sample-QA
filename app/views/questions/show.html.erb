@@ -1,46 +1,48 @@
-<h1>Show Questions</h1>
-<p>
-  Title: <br>
-  <%= @question.title %>
-</p>
-<p>
-  Name: <br>
-  <%= @question.name %>
-</p>
-<p>
-  Content: <br>
-  <%= @question.content %>
-</p>
-
-<h2>Answers</h2>
-<% @question.answers.each do |answer| %>
-  <p>
-    Name:<br>
-    <%= answer.name %>
-  </p>
-  <p>
-    Content:<br>
-    <%= answer.content %>
-  </p>
-  <p>
-    <%= link_to "delete", [answer.question, answer], data: { turbo_method: "delete", turbo_confirm: "Are you sure?" }%>
-  </p>
-<% end %>
-
-<h2>Add a Answer</h2>
-<%= form_with model: [@question, @question.answers.build] do |form| %>
-  <div>
-    <%= form.label :name%><br>
-    <%= form.text_field :name %>
+<div class="card" style="width: 60rem; height: 20rem;">
+  <div class="card-body">
+    <p class="card-subtitle">
+      <%= @question.name %>
+    </p>
+    <p class="card-text">
+      <%= @question.content %>
+    </p>
   </div>
-  <div>
-    <%= form.label :content%><br>
-    <%= form.text_area :content %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
+</div>
 
-<% end %>
+<div class="card" style="width: 60rem; height: 20rem;">
+  <div class="card-body">
+    <% @question.answers.each do |answer| %>
+      <p class="card-subtitle">
+        <%= answer.name %>
+      </p>
+      <p class="card-text">
+        <%= answer.content %>
+      </p>
+      <%= link_to [answer.question, answer], data: { turbo_method: "delete", turbo_confirm: "Are you sure?" } do%>
+        <button type="button" class="btn btn-outline-danger">削除</button>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<div class="answer-form">
+  <h2>回答を追加する</h2>
+  <%= form_with model: [@question, @question.answers.build] do |form| %>
+      <div class="form-title">
+        <%= form.label "ユーザー名", class: "form-label" %><br>
+        <%= form.text_field :name, class: "form-control" %>
+      </div>
+      <div class="form-content">
+        <%= form.label "回答", class: "form-label" %><br>
+        <%= form.text_area :content, class: "form-control content" %>
+      </div>
+      <div class="form-submit">
+        <%= form.submit "回答を追加", class: "btn btn-outline-success" %>
+      </div>
 
-<%= link_to "Back", root_path %>
+  <% end %>
+</div>
+<div class="back-button">
+  <%= link_to root_path do %>
+    <button type="button" class="btn btn-outline-primary">戻る</button>
+  <% end%>
+<div>

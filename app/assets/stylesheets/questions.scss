@@ -1,0 +1,35 @@
+body{
+    width: 960px;
+    margin: auto;
+}
+.card{
+    margin: 30px;
+}
+.card-subtitle{
+    text-align: left;
+    margin: 20px;
+}
+.card-text{
+    font-size: 18px;
+}
+.new-form{
+    margin: 50px 100px 50px 0px;
+}
+.answer-form{
+    margin: 100px;
+}
+.form-control{
+    resize: none;
+    width: 500px;
+    height: 40px;
+    &.content{
+        height: 200px;
+    }
+}
+.form-submit{
+    margin-top: 20px;
+}
+.back-button{
+    margin: 50px 100px 100px 0px;
+}
+
