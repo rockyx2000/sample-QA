@@ -31,7 +31,7 @@
               <i class="fa-solid fa-gear"></i>
             </button>
             <ul class="dropdown-menu">
-              <%= link_to "回答を削除", [answer.question, answer], data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか?" }, class: "dropdown-item" %>
+              <li><%= link_to "回答を削除", [answer.question, answer], data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか?" }, class: "dropdown-item" %></li>
               <li><a class="dropdown-item" href="#">Menu item</a></li>
               <li><a class="dropdown-item" href="#">Menu item</a></li>
             </ul>
