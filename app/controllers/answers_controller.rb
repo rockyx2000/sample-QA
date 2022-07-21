@@ -2,7 +2,6 @@ class AnswersController < ApplicationController
 
     def create
       @question = Question.find_by(id: params[:question_id])
-      @answer = Answer.find_by(question_id: params[:question_id])
       if @question.answers.create(answer_params)
         redirect_to question_path(@question)
       else
