@@ -9,9 +9,11 @@
   </div>
 </div>
 
-<div class="go-to-form">
-  <button id="answer" class="btn btn-primary" type="submit">回答する</button>
-</div>
+<% if user_signed_in? %>
+  <div class="go-to-form">
+    <button id="answer" class="btn btn-primary" type="submit">回答する</button>
+  </div>
+<% end %>
 
 <% if @question.answers.length > 0 %>
   <div class="card">
@@ -41,25 +43,28 @@
   </div>
 <% end %>
 
-<div class="answer-form" id="create-answer">
-  <h2>回答を追加する</h2>
-  <%= form_with model: [@question, @question.answers.build] do |form| %>
-      <div class="answer-errors">
-      </div>
-      <div class="answer-title">
-        <%= form.label "ユーザー名", class: "form-label" %><br>
-        <%= form.text_field :name, class: "form-control" %>
-      </div>
-      <div class="answer-content">
-        <%= form.label "回答", class: "form-label" %><br>
-        <%= form.text_area :content, class: "form-control content" %>
-      </div>
-      <div class="answer-submit">
-        <%= form.submit "回答を追加", class: "btn btn-outline-success" %>
-      </div>
+<% if user_signed_in? %>
+  <div class="answer-form" id="create-answer">
+    <h2>回答を追加する</h2>
+    <%= form_with model: [@question, @question.answers.build] do |form| %>
+        <div class="answer-errors">
+        </div>
+        <div class="answer-title">
+          <%= form.label "ユーザー名", class: "form-label" %><br>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+        <div class="answer-content">
+          <%= form.label "回答", class: "form-label" %><br>
+          <%= form.text_area :content, class: "form-control content" %>
+        </div>
+        <div class="answer-submit">
+          <%= form.submit "回答を追加", class: "btn btn-outline-success" %>
+        </div>
 
-  <% end %>
-</div>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="back-button">
   <%= link_to root_path do %>
     <button type="button" class="btn btn-outline-primary">戻る</button>

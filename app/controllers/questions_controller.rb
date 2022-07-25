@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
     def create
       @question = Question.new(question_params)
       if @question.save
-        redirect_to @question
+        redirect_to question_path(@question.id)
       else
         render "new", status: :unprocessable_entity
       end
@@ -46,6 +46,8 @@ class QuestionsController < ApplicationController
     private
     
     def question_params
-      params.require(:question).permit(:title, :name, :content)
+      question = params.require(:question).permit(:title, :content)
+      user = { "user_id" => current_user.id, "name" => current_user.name }
+      return question.merge(user)
     end
 end

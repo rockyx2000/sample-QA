@@ -1,13 +1,37 @@
 <h1>みんなの質問</h1>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-    メニュー
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li><%= link_to "新規投稿", new_question_path, class: "dropdown-item" %></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
+<div class="user-account">
+  <% unless current_user %>
+    <div class="sign-up">
+      <%= link_to new_user_registration_path do %>
+        <button type="button" class="btn btn-primary">サインアップ</button>
+      <% end %>
+    </div>
+    <div class="login">
+      <%= link_to user_session_path	do %>
+        <button type="button" class="btn btn-primary">ログイン</button>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="account">
+      <%= current_user.name %>
+      <%= link_to edit_user_registration_path do %>
+        <button type="button" class="btn btn-primary">ユーザー編集</button>
+      <% end %>
+      <%= link_to destroy_user_session_path do %>
+        <button type="button" class="btn btn-danger">サインアウト</button>
+      <% end %>
+    </div>
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        メニュー
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><%= link_to "新規投稿", new_question_path, class: "dropdown-item" %></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+    </div>
+  <% end %>
 </div>
 <div class="posts">
     <% @question.each do |q| %>

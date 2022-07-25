@@ -32,6 +32,13 @@ gem "cssbundling-rails"
 #Install FontAwesome
 gem "font-awesome-sass"
 
+#Install devise for user
+gem "devise"
+
+#i18n
+gem "rails-i18n"
+gem "devise-i18n"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
