@@ -20,23 +20,12 @@ class AnswersController < ApplicationController
       @answer = Answer.find_by(question: params[:question_id])
     end
 
-    def answer_form
-      @question = Question.find_by(id: params[:question_id])
-      render(
-        turbo_stream: turbo_stream.update(
-          "answer-form",
-          partial: "answers/form",
-          locals: {
-            model: @question
-          }
-
-        )
-      )
-    end
 
     private
 
     def answer_params
-      params.require(:answer).permit(:name, :content)
+      answer = params.require(:answer).permit(:content)
+      user = { "name" => current_user.name, "user_id" => current_user.id }
+      return answer.merge(user)
     end
 end

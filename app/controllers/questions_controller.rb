@@ -6,6 +6,7 @@ class QuestionsController < ApplicationController
 
     def show
         @question = Question.find_by(id: params[:id])
+        @user = User.find_by(id: @question.user_id)
     end
 
     def new

@@ -1,4 +1,31 @@
 body{
     width: 960px;
-    margin: 30px 100px 30px 100px;
+    margin: auto;
+}
+.all-title{
+    margin-top: 20px;
+}
+.login-form{
+    margin: 50px 100px 50px 0px;
+    .login-email{
+        margin-top: 20px;
+    }
+    .login-password{
+        margin-top: 20px;
+    }
+    .remember{
+        margin-top: 10px;
+    }
+    .login-submit{
+        margin-top: 20px;
+    }    
+}
+.form-control{
+    resize: none;
+    width: 500px;
+    height: 40px;
+}
+
+.back-button{
+    margin: 50px 100px 100px 0px;
 }

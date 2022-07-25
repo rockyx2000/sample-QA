@@ -6,7 +6,20 @@ body{
     margin-top: 30px;
     margin-bottom: 30px;
 }
-
+.all-title{
+    margin-top: 20px;
+}
+.user-account{
+    justify-content: space-between;
+    .dropdown-user{
+        text-align: right;
+    }
+    .new-question{
+        margin-top: 20px;
+        width: 80px;
+    }
+    
+}
 .card{
     width: auto;
     height: auto;

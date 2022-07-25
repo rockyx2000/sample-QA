@@ -20,14 +20,19 @@ class Devise::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    User.new
+  end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    @user = User.find_by(id: current_user.id)
+    if @user.update(update_params)
+      redirect_to root_path
+    else
+      render "edit", status: :unprocessable_entity
+    end
+  end
 
   # DELETE /resource
   def destroy
@@ -50,6 +55,10 @@ class Devise::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute])
+  end
+
+  def update_params
+    params.require(:users).permit(:email, :password, :password_confirmation, :current_password)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

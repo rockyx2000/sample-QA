@@ -1,7 +1,11 @@
 <div class="card">
   <div class="card-body">
     <p class="card-subtitle">
-      <%= @question.name %>
+      <% if @user != nil && @question.user_id == @user.id %>
+        <%= @question.name %>
+      <% else %>
+        削除済みのユーザー
+      <% end %>
     </p>
     <p class="card-text">
       <%= @question.content %>
@@ -28,16 +32,18 @@
           <p class="card-text">
             <%= answer.content %>
           </p>
-          <div class="answer-menu">
-            <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa-solid fa-gear"></i>
-            </button>
-            <ul class="dropdown-menu">
-              <li><%= link_to "回答を削除", [answer.question, answer], data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか?" }, class: "dropdown-item" %></li>
-              <li><a class="dropdown-item" href="#">Menu item</a></li>
-              <li><a class="dropdown-item" href="#">Menu item</a></li>
-            </ul>
-          </div>
+          <% if user_signed_in? && answer.user_id == current_user.id %>
+            <div class="answer-menu">
+              <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa-solid fa-gear"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li><%= link_to "回答を削除", [answer.question, answer], data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか?" }, class: "dropdown-item" %></li>
+                <li><a class="dropdown-item" href="#">Menu item</a></li>
+                <li><a class="dropdown-item" href="#">Menu item</a></li>
+              </ul>
+            </div>
+          <% end %>
         </div>
     <% end %>
   </div>
@@ -50,8 +56,6 @@
         <div class="answer-errors">
         </div>
         <div class="answer-title">
-          <%= form.label "ユーザー名", class: "form-label" %><br>
-          <%= form.text_field :name, class: "form-control" %>
         </div>
         <div class="answer-content">
           <%= form.label "回答", class: "form-label" %><br>
