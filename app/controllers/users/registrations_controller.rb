@@ -58,7 +58,7 @@ class Devise::RegistrationsController < Devise::RegistrationsController
   end
 
   def update_params
-    params.require(:users).permit(:email, :password, :password_confirmation, :current_password)
+    params.require(:users).permit(:name, :email, :password, :password_confirmation, :current_password)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

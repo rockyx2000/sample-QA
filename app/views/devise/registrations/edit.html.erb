@@ -3,9 +3,13 @@
   <%= form_for(resource, as: @user, url: registration_path(@user), html: { method: :put }) do |f| %>
     <%= render "devise/shared/error_messages", resource: @user %>
 
+    <div class="register-user">
+      <%= f.label "ユーザー名", class: "form-label"%>
+      <%= f.text_field :name, class: "form-control"%>
+    </div>
     <div class="register-email">
       <%= f.label :email, class: "form-label" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-contol" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
     </div>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -13,10 +17,10 @@
     <% end %>
 
     <div class="register-password">
-      <%= f.label :password, class: "form-label" %> <i>(leave blank if you don't want to change it)</i>
+      <%= f.label :password, class: "form-label" %> <i>(変更が必要ない場合は空白)</i>
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
       <% if @minimum_password_length %>
-        <em><%= @minimum_password_length %> characters minimum</em>
+        <em><%= @minimum_password_length %> 文字以上</em>
       <% end %>
     </div>
 
@@ -26,7 +30,7 @@
     </div>
 
     <div class="register-password">
-      <%= f.label :current_password, class: "form-label" %> <i>(we need your current password to confirm your changes)</i>
+      <%= f.label :current_password, class: "form-label" %> <i>(現在のパスワードの確認)</i>
       <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
     </div>
 
@@ -40,4 +44,6 @@
 
 <p>退会しますか？ <%= button_to "アカウントを削除", registration_path(resource_name), data: { turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-outline-danger" %></p>
 
-<%= link_to "Back", :back, class: "btn btn-outline-primary" %>
+<div class="back-button">
+  <%= link_to "Back", :back, class: "btn btn-outline-primary" %>
+</div>
