@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <p class="card-subtitle">
-      <% if @user != nil && @question.name == @user.name %>
+      <% if @user != nil && @question.id == @user.id %>
         <%= @question.name %>
       <% else %>
         削除済みのユーザー
@@ -10,7 +10,7 @@
     <p class="card-text">
       <%= @question.content %>
     </p>
-    <% if user_signed_in? && @question.name == current_user.name %>
+    <% if user_signed_in? && @question.id == current_user.id %>
       <div class="answer-menu">
         <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-gear"></i>

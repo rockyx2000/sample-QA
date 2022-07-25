@@ -42,7 +42,8 @@
 
 <h3>退会する</h3>
 
-<p>退会しますか？ <%= button_to "アカウントを削除", registration_path(resource_name), data: { turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-outline-danger" %></p>
+<p>退会しますか？</p>
+<%= link_to "アカウントを削除", registration_path(@user), data: { turbo_method: "delete", turbo_confirm: "本当に削除しますか?" }, class: "btn btn-outline-danger" %>
 
 <div class="back-button">
   <%= link_to "Back", :back, class: "btn btn-outline-primary" %>
