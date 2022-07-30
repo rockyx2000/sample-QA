@@ -21,7 +21,7 @@ class Devise::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    User.new
+    @user = User.new
   end
 
   # PUT /resource
