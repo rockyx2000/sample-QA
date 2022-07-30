@@ -8,7 +8,7 @@
       <% end %>
     </p>
     <p class="card-text">
-      <%= @question.content %>
+      <%= safe_join(@question.content.split("\n"), tag(:br)) %>
     </p>
     <% if user_signed_in? && @question.id == current_user.id %>
       <div class="answer-menu">
@@ -41,7 +41,7 @@
             <%= answer.name %>
           </p>
           <p class="card-text">
-            <%= answer.content %>
+            <%= safe_join(answer.content.split("\n"), tag(:br)) %>
           </p>
           <% if user_signed_in? && answer.user_id == current_user.id %>
             <div class="answer-menu">
