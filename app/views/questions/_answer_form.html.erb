@@ -1,0 +1,34 @@
+<% if user_signed_in? %>
+  <div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">回答を追加する</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <%= form_with model: [@question, @question.answers.build] do |form| %>
+                    <div class="answer-errors">
+                    </div>
+                    <div class="answer-title">
+                    </div>
+                    <div class="answer-content">
+                    <%= form.label "回答", class: "form-label" %><br>
+                    <%= form.text_area :content, class: "form-control content" %>
+                    </div>
+                    <div class="answer-submit">
+                    <%# form.submit "回答を追加", class: "btn btn-outline-success" %>
+                    </div>
+            </div>
+
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= form.submit "回答を追加", class: "btn btn-outline-success" %>
+            <%# <button type="button" class="btn btn-primary">Save changes</button> %>
+            </div>
+                <% end %>
+        </div>
+    </div>
+  </div>
+<% end %>
