@@ -37,9 +37,8 @@ class QuestionsController < ApplicationController
 
     def destroy
       @question = Question.find_by(id: params[:id])
-      if @question.user_id == current_user.id
-        @question.destroy
-        redirect_to "/"
+      if @question.destroy
+        redirect_to root_path, status: :see_other
       else
         flash[:error] = "削除できませんでした" 
       end
