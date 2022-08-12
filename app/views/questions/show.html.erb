@@ -30,7 +30,7 @@
   </div>
 </div>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @user != nil %>
   <!-- Button trigger modal -->
     <div class="answer-button">
       <button type="button" id="answer" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#answerModal">
