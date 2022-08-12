@@ -81,13 +81,17 @@ body{
     &.content{
         height: 200px;
     }
+    &.content-modal{
+        width: 465px;
+        height: 200px;
+    }
 }
 
 //some buttons
 .back-button{
     margin: 50px 100px 100px 0px;
 }
-.go-to-form{
+.answer-button{
     text-align: center;
     #answer{
         float: none;

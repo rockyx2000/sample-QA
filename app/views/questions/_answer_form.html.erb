@@ -1,5 +1,7 @@
 <% if user_signed_in? %>
-  <div class="modal" tabindex="-1">
+  
+  <!-- modal -->
+  <div class="modal fade" id="answerModal" tabindex="-1" aria-labelledby="answerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -15,7 +17,7 @@
                     </div>
                     <div class="answer-content">
                     <%= form.label "回答", class: "form-label" %><br>
-                    <%= form.text_area :content, class: "form-control content" %>
+                    <%= form.text_area :content, class: "form-control content-modal" %>
                     </div>
                     <div class="answer-submit">
                     <%# form.submit "回答を追加", class: "btn btn-outline-success" %>
@@ -23,9 +25,8 @@
             </div>
 
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <%= form.submit "回答を追加", class: "btn btn-outline-success" %>
-            <%# <button type="button" class="btn btn-primary">Save changes</button> %>
+            <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">キャンセル</button>
+                    <%= form.submit "回答を追加", class: "btn btn-outline-success" %>
             </div>
                 <% end %>
         </div>

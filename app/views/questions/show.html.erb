@@ -1,7 +1,13 @@
+<% if flash[:error]%>
+  <div class="alert alert-danger" role="alert">
+    <%= flash[:error] %>
+  </div>
+<% end %>
 <div class="card">
   <div class="card-body">
     <p class="card-subtitle">
-      <% if @user != nil && @question.id == @user.id %>
+      <%# if @user != nil && @question.id == @user.id %>
+      <% if @user != nil %>
         <%= @question.name %>
       <% else %>
         削除済みのユーザー
@@ -10,7 +16,7 @@
     <p class="card-text">
       <%= safe_join(@question.content.split("\n"), tag(:br)) %>
     </p>
-    <% if user_signed_in? && @question.id == current_user.id %>
+    <% if user_signed_in? && @question.user_id == current_user.id %>
       <div class="answer-menu">
         <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-solid fa-gear"></i>
@@ -25,9 +31,12 @@
 </div>
 
 <% if user_signed_in? %>
-  <div class="go-to-form">
-    <button id="answer" class="btn btn-primary" type="submit">回答する</button>
-  </div>
+  <!-- Button trigger modal -->
+    <div class="answer-button">
+      <button type="button" id="answer" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#answerModal">
+      回答する
+      </button>
+    </div>
 <% end %>
 
 <% if @question.answers.length > 0 %>
@@ -60,39 +69,10 @@
   </div>
 <% end %>
 
-<% if user_signed_in? %>
-  <div class="answer-form" id="create-answer">
-    <h2>回答を追加する</h2>
-    <%= form_with model: [@question, @question.answers.build] do |form| %>
-        <div class="answer-errors">
-        </div>
-        <div class="answer-title">
-        </div>
-        <div class="answer-content">
-          <%= form.label "回答", class: "form-label" %><br>
-          <%= form.text_area :content, class: "form-control content" %>
-        </div>
-        <div class="answer-submit">
-          <%= form.submit "回答を追加", class: "btn btn-outline-success" %>
-        </div>
-
-    <% end %>
-  </div>
-<% end %>
+<%= render partial: "answer_form" %>
 
 <div class="back-button">
   <%= link_to root_path do %>
     <button type="button" class="btn btn-outline-primary">戻る</button>
   <% end%>
 <div>
-
-<script type="text/javascript">
-  document.addEventListener("turbo:load", () => {
-    Turbo.clearCache();
-    //初期表示は非表示
-    const button = document.getElementById("answer")
-    button.addEventListener("click", function(){
-      window.scrollTo(0, document.body.scrollHeight)
-    });
-  })
-</script>

@@ -37,10 +37,11 @@ class QuestionsController < ApplicationController
 
     def destroy
       @question = Question.find_by(id: params[:id])
-      if @question.destroy
-        redirect_to root_path
+      if @question.user_id == current_user.id
+        @question.destroy
+        redirect_to "/"
       else
-        redirect_to @question
+        flash[:error] = "削除できませんでした" 
       end
     end
 
